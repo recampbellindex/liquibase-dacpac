@@ -12,8 +12,8 @@
 <changeSet author="amalik"  id="runDacPac" runAlways="true" runOnChange="true">  
     <executeCommand  executable="runDacPac.sh"  
             timeout="300s">  
-        <arg value="runme.sh"/>
-        <arg value="param2"/> 
+        <arg value="exports.sh"/>
+        <arg value="empty"/> 
     </executeCommand>  
 </changeSet>
 

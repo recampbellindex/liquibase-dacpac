@@ -4,7 +4,7 @@ export PATH="/Users/adeelmalik/Downloads/sqlpackage":$PATH
 # psql -h localhost -U postgres --command "\COPY table1 FROM PROGRAM 'gzip -dc data.csv.gz' DELIMITER ',' CSV HEADER; "
 
 echo param1=${1}
-
+cat ${1}
 source ${1}
 
 # psql -h ${HOSTNAME} -U ${PGUSERNAME} --command "\COPY table1 FROM PROGRAM 'gzip -dc data.csv.gz' DELIMITER ',' CSV HEADER; "
