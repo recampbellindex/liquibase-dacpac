@@ -1,0 +1,19 @@
+sqlpackage \
+    /Action:Extract \
+    /TargetFile:NPT_DEV.dacpac \
+    /p:ExtractAllTableData=true \
+    /p:VerifyExtraction=true \
+    /SourceTrustServerCertificate:true \
+    /SourceServerName:demo-db1-win.liquibase.net \
+    /SourceDatabaseName:NPT_DEV \
+    /SourceUser:DATICAL_USER \
+    /SourcePassword:DATICAL_USER_PW
+
+sqlpackage \
+    /SourceFile:"NPT_DEV.dacpac" \
+    /Action:Publish \
+    /TargetServerName:"demo-db1-win.liquibase.net" \
+    /TargetTrustServerCertificate:true \
+    /TargetDatabaseName:"NPT_DEV2" \
+    /TargetUser:"DATICAL_USER" \
+    /TargetPassword:"DATICAL_USER_PW"

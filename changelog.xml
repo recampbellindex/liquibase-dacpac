@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+    http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd ">
+
+
+
+<changeSet author="amalik"  id="runDacPac" runAlways="true" runOnChange="true">  
+    <executeCommand  executable="runDacPac.sh"  
+            timeout="300s">  
+        <arg value="runme.sh"/>
+        <arg value="param2"/> 
+    </executeCommand>  
+</changeSet>
+
+<!-- <changeSet author="amalik"  id="awrrpt" runAlways="true" runOnChange="true" label="snapid">  
+    <executeCommand  executable="path/to/sqlplus"  
+            timeout="10s">  
+        <arg value="param1"/>
+        <arg value="param2"/> 
+    </executeCommand>  
+</changeSet>
+
+<changeSet author="amalik"  id="awrrpt" runAlways="true" runOnChange="true" label="report">  
+    <executeCommand  executable="path/to/sqlplus"  
+            timeout="10s">  
+        <arg value="param1"/>
+        <arg value="param2"/> 
+    </executeCommand>  
+</changeSet> -->
+
+<!-- <changeSet author="amalik"  id="ls" runAlways="true" runOnChange="true">  
+    <executeCommand  executable="ls"  
+            timeout="10s">  
+        <arg value="-alh"/>
+    </executeCommand>  
+</changeSet> -->
+
+</databaseChangeLog>
+
