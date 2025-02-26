@@ -1,3 +1,13 @@
+# SqlPackage is a command-line utility that automates the database development tasks by 
+#  exposing some of the public Data-Tier Application Framework (DacFx) APIs. 
+#  The primary use cases for SqlPackage focus on database portability and deployments for 
+#  the SQL Server, Azure SQL, and Azure Synapse Analytics family of databases. 
+#  SqlPackage can be automated using Azure Pipelines and GitHub actions or other CI/CD tools.
+#  https://learn.microsoft.com/en-us/sql/tools/sqlpackage/sqlpackage?view=sql-server-ver16
+
+# The SqlPackage Extract action creates a schema of a connected database in a DACPAC file (.dacpac).
+#  By default, data is not included in the .dacpac file.
+#  https://learn.microsoft.com/en-us/sql/tools/sqlpackage/sqlpackage-extract?view=sql-server-ver16
 sqlpackage \
     /Action:Extract \
     /TargetFile:NPT_DEV.dacpac \
@@ -9,6 +19,22 @@ sqlpackage \
     /SourceUser:DATICAL_USER \
     /SourcePassword:DATICAL_USER_PW
 
+# The SqlPackage Script action creates a Transact-SQL incremental update script 
+#  that updates the schema of a target database to match the schema of a source database.
+#  https://learn.microsoft.com/en-us/sql/tools/sqlpackage/sqlpackage-script?view=sql-server-ver16
+sqlpackage \
+    /SourceFile:"NPT_DEV.dacpac" \
+    /Action:Script \
+    /TargetServerName:"demo-db1-win.liquibase.net" \
+    /TargetTrustServerCertificate:true \
+    /TargetDatabaseName:"NPT_DEV2" \
+    /TargetUser:"DATICAL_USER" \
+    /TargetPassword:"DATICAL_USER_PW" \
+    /OutputPath:"outputScript.sql"
+
+# The SqlPackage publish operation incrementally updates the schema of a target database 
+#  to match the structure of a source database.
+#  https://learn.microsoft.com/en-us/sql/tools/sqlpackage/sqlpackage-publish?view=sql-server-ver16
 sqlpackage \
     /SourceFile:"NPT_DEV.dacpac" \
     /Action:Publish \

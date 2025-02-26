@@ -1,0 +1,29 @@
+# globalVariables:
+#   LIQUIBASE_COMMAND_CHANGELOG_FILE: outputScript.sql
+
+stages:
+
+  Status:
+    actions:
+
+    - type: liquibase
+      command: status
+
+    - type: control
+      if: "status.changesetCount == 0"
+      command: exit
+      cmdArgs: {
+        exitStatus: 0,
+        message: "Exiting because the database is up-to-date."
+      }
+  
+  Update:
+    actions:
+    - type: liquibase
+      command: update
+
+
+endStage:
+  actions:
+  - type: liquibase
+    command: history

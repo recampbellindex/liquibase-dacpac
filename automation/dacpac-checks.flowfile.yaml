@@ -1,0 +1,29 @@
+# globalVariables:
+#   LIQUIBASE_COMMAND_CHANGELOG_FILE: outputScript.sql
+
+stages:
+  
+  Generate-Script:
+    actions:
+    - type: shell
+      command: scripts/generateUpdateScripts.sh scripts/exports.sh
+
+  Checks:
+    actions:
+    - type: liquibase
+      command: checks run
+      cmdArgs: { 
+        # changeset-filter: "pending",
+        changelog-file: "output/outputScript.sql",
+        checks-settings-file: "automation/liquibase.checks-settings.conf",
+        reports-enabled: "true",
+        reports-path: "output",
+        reports-name: "checksReport.html"
+      }
+
+
+
+# endStage:
+#   actions:
+#   - type: liquibase
+#     command: history

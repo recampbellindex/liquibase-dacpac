@@ -9,13 +9,23 @@
 
 
 
-<changeSet author="amalik"  id="runDacPac" runAlways="true" runOnChange="true">  
+<changeSet author="amalik"  id="NPT_DEV.dacpac">  
+    <executeCommand  executable="scripts/deployDacPac.sh"  
+            timeout="300s">  
+        <arg value="scripts/exports.sh"/>
+        <arg value="param2_not_used"/>
+    </executeCommand>  
+    <rollback>
+        empty
+    </rollback>
+</changeSet>
+
+<!-- <changeSet author="amalik"  id="runDacPac" runAlways="true" runOnChange="true">  
     <executeCommand  executable="runDacPac.sh"  
             timeout="300s">  
         <arg value="exports.sh"/>
-        <arg value="empty"/> 
     </executeCommand>  
-</changeSet>
+</changeSet> -->
 
 <!-- <changeSet author="amalik"  id="awrrpt" runAlways="true" runOnChange="true" label="snapid">  
     <executeCommand  executable="path/to/sqlplus"  
