@@ -6,7 +6,7 @@ stages:
   Generate-Script:
     actions:
     - type: shell
-      command: scripts/generateUpdateScripts.sh scripts/exports.sh
+      command: scripts/generateUpdateScripts.sh scripts/exports.sh dacpac/NPT-1.0.dacpac
 
   Checks:
     actions:

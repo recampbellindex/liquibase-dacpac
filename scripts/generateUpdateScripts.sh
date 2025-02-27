@@ -1,4 +1,6 @@
 echo exports=${1}
+echo DACPAC_FILE=${2}
+
 cat ${1}
 source ${1}
 

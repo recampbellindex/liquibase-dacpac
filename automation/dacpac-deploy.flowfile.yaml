@@ -17,11 +17,64 @@ stages:
         message: "Exiting because the database is up-to-date."
       }
   
+  Snapshot-Before:
+    actions:
+    - type: liquibase
+      command: snapshot
+      cmdArgs: { snapshot-format: "json" }
+      globalArgs: { output-file: "output/SNAPSHOT-BEFORE.json" }
+
+  Tag: 
+    actions: 
+    - type: liquibase
+      command: tag
+      cmdArgs: { tag: "tag1" }
+
   Update:
     actions:
     - type: liquibase
       command: update
 
+  Snapshot-After:
+    actions:
+    - type: liquibase
+      command: snapshot
+      cmdArgs: { snapshot-format: "json" }
+      globalArgs: { output-file: "output/SNAPSHOT-AFTER.json" }
+
+  Drift_Detection:
+    actions:
+      - type: liquibase
+        command: diff
+        cmdArgs: { 
+          url: "offline:sqlserver?snapshot=output/SNAPSHOT-BEFORE.json",
+          reference-url: "offline:sqlserver?snapshot=output/SNAPSHOT-AFTER.json", 
+        }
+        globalArgs: {
+          mirror-console-messages-to-log: "true",
+          reports-enabled: "true",
+          reports-path: "output",
+          reports-name: "drift-report.html"
+        }
+
+
+  # Diff:
+  #   actions:
+  #   - type: shell
+  #     command: rm output/diff-changelog.xml
+  #   - type: liquibase
+  #     command: diff
+  #     cmdArgs: { 
+  #       url: "offline:sqlserver?snapshot=output/SNAPSHOT-BEFORE.json",
+  #       reference-url: "offline:sqlserver?snapshot=output/SNAPSHOT-AFTER.json", 
+  #       changelog-file: "output/diff-changelog.xml"
+  #     }
+
+  # ChangelogSync:
+  #   actions:
+  #   - type: liquibase
+  #     command: changelog-sync
+  #     cmdArgs: { changelog-file: "output/diff-changelog.xml" }
 
 endStage:
   actions:

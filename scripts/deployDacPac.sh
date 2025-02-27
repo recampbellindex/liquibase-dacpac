@@ -1,11 +1,13 @@
 echo exports=${1}
+echo DACPAC_FILE=${2}
+
 cat ${1}
 source ${1}
 
 # sudo spctl --master-disable
 
 sqlpackage \
-    /SourceFile:"${DACPAC_SOURCEFILE}" \
+    /SourceFile:"${2}" \
     /Action:Publish \
     /TargetServerName:"${SQL_TARGETSERVERNAME}" \
     /TargetTrustServerCertificate:true \
