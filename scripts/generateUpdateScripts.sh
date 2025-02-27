@@ -7,7 +7,7 @@ source ${1}
 # sudo spctl --master-disable
 
 sqlpackage \
-    /SourceFile:"${DACPAC_SOURCEFILE}" \
+    /SourceFile:"${2}" \
     /Action:Script \
     /TargetServerName:"${SQL_TARGETSERVERNAME}" \
     /TargetTrustServerCertificate:true \
