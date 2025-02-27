@@ -54,7 +54,7 @@ stages:
           mirror-console-messages-to-log: "true",
           reports-enabled: "true",
           reports-path: "output",
-          reports-name: "drift-report.html"
+          reports-name: "tag1-diff-report.html"
         }
 
 
