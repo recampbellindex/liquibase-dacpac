@@ -13,12 +13,13 @@ DACPAC file are deployed using the [executeCommand](https://docs.liquibase.com/c
 Example changeset:
 
 ```xml
-<changeSet author="amalik"  id="NPT_DEV.dacpac">  
+<changeSet author="amalik"  id="dacpac/NPT-1.0.dacpac">  
     <executeCommand  executable="scripts/deployDacPac.sh"  
             timeout="300s">  
         <arg value="scripts/exports.sh"/>
-        <arg value="param2_not_used"/>
-    </executeCommand>
+        <arg value="dacpac/NPT-1.0.dacpac"/>
+    </executeCommand>  
+</changeSet>
 ```
 
 The `sqlpackage` command is used in the `scripts/deployDacPac.sh` script as follows. 
