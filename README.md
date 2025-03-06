@@ -60,7 +60,7 @@ To run this script with Liquibase:
 1. Using Liquibase OSS:
     1. Run `liquibase update` command (Note: you will not be able to run Liquibase Policy Checks or Liquibase Flow siles without a Pro license)
 
-### Liquibase Pro 
+### Liquibase Pro features
 
 The repository demonstrates the following Liquibase Pro features:
 * [Flow files](https://docs.liquibase.com/liquibase-pro/flow/home.html)
