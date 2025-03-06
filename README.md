@@ -57,6 +57,14 @@ To run this script with Liquibase:
 1. Using Liquibase OSS:
     1. Run `liquibase update` command (Note: you will not be able to run Liquibase Policy Checks or Liquibase Flow siles without a Pro license)
 
+### Liquibase Pro 
+
+The repository demonstrates the following Liquibase Pro features:
+* [Flow files](https://docs.liquibase.com/liquibase-pro/flow/home.html)
+* [Policy checks](https://docs.liquibase.com/liquibase-pro/policy-checks/home.html)
+* [Drift detection](https://docs.liquibase.com/workflows/liquibase-community/drift-detection.html)
+* [Operation reports](https://docs.liquibase.com/liquibase-pro/observability/operation-reports.html)
+
 ----
 
 ## Explanation of files in this repository
