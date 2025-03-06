@@ -16,8 +16,8 @@ stages:
         changeset-filter: "pending",
         changelog-file: "output/outputScript.sql",
         checks-settings-file: "automation/liquibase.checks-settings.conf",
-        # reports-enabled: "true",
-        # reports-path: "output",
+        reports-enabled: "true",
+        reports-path: "output",
         reports-name: "checksReport.html"
       }
 
