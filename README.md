@@ -39,7 +39,9 @@ This shell script should be configured as executable (`chmod +x runDacPac.sh`) a
 
 ## Developer Experience
 
-For developers wanting to deploy their DACPAC files using Liquibase, they will need to provide the DACPAC file name in the [exports.sh](scripts/exports.sh) file, along with other information such as the server name, database, username and password.
+For developers wanting to deploy their DACPAC files using Liquibase, they will need to provide the DACPAC file name in the changeset. 
+
+A one-time setup is needed to specify information such as the server name, database, username and password in [exports.sh](scripts/exports.sh) script.
 
 If implementing with CICD tools, you may want to use these Liquibase environment variables for username and password in your [exports.sh](scripts/exports.sh) script:
 * `LIQUIBASE_COMMAND_USERNAME`
