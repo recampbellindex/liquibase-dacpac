@@ -9,7 +9,7 @@
 
 
 
-    <changeSet author="amalik"  id="NPT-1.0.dacpac">  
+    <changeSet author="amalik"  id="dacpac/NPT-1.0.dacpac">  
         <executeCommand  executable="scripts/deployDacPac.sh"  
                 timeout="300s">  
             <arg value="scripts/exports.sh"/>
@@ -17,7 +17,7 @@
         </executeCommand>  
     </changeSet>
 
-    <changeSet author="amalik"  id="NPT-1.1.dacpac">  
+    <changeSet author="amalik"  id="dacpac/NPT-1.1.dacpac">  
         <executeCommand  executable="scripts/deployDacPac.sh"  
                 timeout="300s">  
             <arg value="scripts/exports.sh"/>

@@ -23,7 +23,7 @@ mkdir output
 
 for str in "${string_list[@]}"; do
   echo "Current string: $str"
-  scripts/generateUpdateScripts.sh scripts/exports.sh dacpac/NPT-1.0.dacpac output/${str}.sql
+  scripts/scriptDacPac.sh scripts/exports.sh dacpac/NPT-1.0.dacpac output/${str}.sql
   cat output/$str.sql >> output/outputScript.sql
 done
 

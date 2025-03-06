@@ -34,6 +34,12 @@ stages:
     actions:
     - type: liquibase
       command: update
+      globalArgs: {
+        mirror-console-messages-to-log: "true",
+        reports-enabled: "true",
+        reports-path: "output",
+        reports-name: "updateReport.html"
+      }
 
   Snapshot-After:
     actions:
@@ -54,21 +60,21 @@ stages:
           mirror-console-messages-to-log: "true",
           reports-enabled: "true",
           reports-path: "output",
-          reports-name: "tag1-diff-report.html"
+          reports-name: "tag1-diffReport.html"
         }
 
 
-  # Diff:
-  #   actions:
-  #   - type: shell
-  #     command: rm output/diff-changelog.xml
-  #   - type: liquibase
-  #     command: diff
-  #     cmdArgs: { 
-  #       url: "offline:sqlserver?snapshot=output/SNAPSHOT-BEFORE.json",
-  #       reference-url: "offline:sqlserver?snapshot=output/SNAPSHOT-AFTER.json", 
-  #       changelog-file: "output/diff-changelog.xml"
-  #     }
+  Diff:
+    actions:
+    - type: shell
+      command: rm output/diff-changelog.xml
+    - type: liquibase
+      command: diff
+      cmdArgs: { 
+        url: "offline:sqlserver?snapshot=output/SNAPSHOT-BEFORE.json",
+        reference-url: "offline:sqlserver?snapshot=output/SNAPSHOT-AFTER.json", 
+        changelog-file: "output/diff-changelog.xml"
+      }
 
   # ChangelogSync:
   #   actions:

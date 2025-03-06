@@ -7,18 +7,17 @@ stages:
     actions:
     - type: shell
       command: scripts/generateSqlOutput.sh
-      # command: scripts/generateUpdateScripts.sh scripts/exports.sh dacpac/NPT-1.0.dacpac output/outputScript.sql
 
   Checks:
     actions:
     - type: liquibase
       command: checks run
       cmdArgs: { 
-        # changeset-filter: "pending",
+        changeset-filter: "pending",
         changelog-file: "output/outputScript.sql",
         checks-settings-file: "automation/liquibase.checks-settings.conf",
-        reports-enabled: "true",
-        reports-path: "output",
+        # reports-enabled: "true",
+        # reports-path: "output",
         reports-name: "checksReport.html"
       }
 
