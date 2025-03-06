@@ -73,11 +73,13 @@ The repository demonstrates the following Liquibase Pro features:
 ## Explanation of files in this repository
 
 ```log
-├── NPT_DEV.dacpac
 ├── README.md
 ├── changelog.xml
 ├── liquibase.properties
 ├── sqlpackage_commands.txt
+├── dacpac
+│   ├── NPT-1.0.dacpac
+│   └── NPT-1.1.dacpac
 ├── scripts
 │   ├── exports.sh
 │   ├── scriptDacPac.sh
@@ -89,10 +91,12 @@ The repository demonstrates the following Liquibase Pro features:
     └── dacpac-deploy.flowfile.yaml
 ```
 
-1. `NPT_DEV.dacpac`: Sample dacpac file used in this repository
 1. `changelog.xml`: This is the Liquibase changelog file demonstrating the use of `executeCommand` change type. 
 1. `liquibase.properties`: Liquibase defaults file used to pass properties such as database URL, username, passwords, etc. These properties can also be passed using Liquibase environment variables in CICD. Each environment variable is shown as comments inside this file.
 1. `sqlpackage_commands.txt`: This is a helper file to show basic `sqlpackage` commands used in this repository for various actions (Extract, Script and Publish)
+1. "dacpac" directory: This directory is where developer would commit their dacpac files.
+    1. `NPT_DEV-1.0.dacpac`: Sample dacpac file used in this repository
+    1. `NPT_DEV-1.1.dacpac`: Sample dacpac file used in this repository
 1. "scripts" directory:
     1. `scripts/exports.sh`: This script is where user would specify target database information as well as the name of the dacpac file.
     1. `scripts/scriptDacPac.sh`: This script generates SQL scripts using sqlpackage's action=script. 
