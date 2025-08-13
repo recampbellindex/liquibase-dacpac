@@ -1,0 +1,88 @@
+# globalVariables:
+#   LIQUIBASE_COMMAND_CHANGELOG_FILE: outputScript.sql
+
+stages:
+
+  Status:
+    actions:
+
+    - type: liquibase
+      command: status
+
+    - type: control
+      if: "status.changesetCount == 0"
+      command: exit
+      cmdArgs: {
+        exitStatus: 0,
+        message: "Exiting because the database is up-to-date."
+      }
+  
+  Snapshot-Before:
+    actions:
+    - type: liquibase
+      command: snapshot
+      cmdArgs: { snapshot-format: "json" }
+      globalArgs: { output-file: "output/SNAPSHOT-BEFORE.json" }
+
+  Tag: 
+    actions: 
+    - type: liquibase
+      command: tag
+      cmdArgs: { tag: "tag1" }
+
+  Update:
+    actions:
+    - type: liquibase
+      command: update
+      globalArgs: {
+        mirror-console-messages-to-log: "true",
+        reports-enabled: "true",
+        reports-path: "output",
+        reports-name: "updateReport.html"
+      }
+
+  Snapshot-After:
+    actions:
+    - type: liquibase
+      command: snapshot
+      cmdArgs: { snapshot-format: "json" }
+      globalArgs: { output-file: "output/SNAPSHOT-AFTER.json" }
+
+  Drift_Detection:
+    actions:
+      - type: liquibase
+        command: diff
+        cmdArgs: { 
+          url: "offline:sqlserver?snapshot=output/SNAPSHOT-BEFORE.json",
+          reference-url: "offline:sqlserver?snapshot=output/SNAPSHOT-AFTER.json", 
+        }
+        globalArgs: {
+          mirror-console-messages-to-log: "true",
+          reports-enabled: "true",
+          reports-path: "output",
+          reports-name: "tag1-diffReport.html"
+        }
+
+
+  Diff:
+    actions:
+    - type: shell
+      command: rm output/diff-changelog.xml
+    - type: liquibase
+      command: diff
+      cmdArgs: { 
+        url: "offline:sqlserver?snapshot=output/SNAPSHOT-BEFORE.json",
+        reference-url: "offline:sqlserver?snapshot=output/SNAPSHOT-AFTER.json", 
+        changelog-file: "output/diff-changelog.xml"
+      }
+
+  # ChangelogSync:
+  #   actions:
+  #   - type: liquibase
+  #     command: changelog-sync
+  #     cmdArgs: { changelog-file: "output/diff-changelog.xml" }
+
+endStage:
+  actions:
+  - type: liquibase
+    command: history
